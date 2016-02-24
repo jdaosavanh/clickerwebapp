@@ -318,6 +318,15 @@ pre {
     margin-top:50px;
 }
 
+.pinkblock{
+    color: #fff;
+    background-color: #ff5555;
+    padding-bottom: 10px;
+}
+
+.lightgreenblock{
+    background: #DCE47E;
+}
 .checks.ctp-warning {
     color: #fff;
     background-color: #ff5555;
@@ -564,4 +573,11 @@ div.message.hidden {
     margin-top: 20px;
     margin-bottom: 10px;
     border-bottom: 0px;
+}
+
+.login{
+    float:right;
+}
+.login a{
+    color:white;
 }
