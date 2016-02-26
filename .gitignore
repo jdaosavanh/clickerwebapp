@@ -1,0 +1,6 @@
+.modgit/
+.idea/
+var/
+app/etc/local.xml
+media/catalog/
+.DS_Store
