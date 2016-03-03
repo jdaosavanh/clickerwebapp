@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="clickerapp" promptOnLocalOverwrite="false" filePermissions="493" folderPermissions="493" autoUploadExternalChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="clickerwebapp" promptOnLocalOverwrite="false" filePermissions="493" folderPermissions="493" autoUploadExternalChanges="true">
     <serverData>
-      <paths name="clickerapp">
+      <paths name="clickerwebapp">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/var/www/clickerapp" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
