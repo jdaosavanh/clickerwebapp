@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\Table\UserclassesTable;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -12,7 +13,27 @@ use Cake\ORM\TableRegistry;
  */
 class UsersController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
 
+    public function beforeFilter(Event $event){
+        $this->Auth->allow('userid');
+        $this->Auth->allow('add');
+
+        if ($this->RequestHandler->accepts('html')) {
+            // Execute code only if client accepts an HTML (text/html)
+            // response.
+        } elseif ($this->RequestHandler->accepts('xml')) {
+            // Execute XML-only code
+        }
+        if ($this->RequestHandler->accepts(['xml', 'rss', 'atom'])) {
+            // Executes if the client accepts any of the above: XML, RSS
+            // or Atom.
+        }
+    }
     /**
      * Index method
      *
@@ -113,8 +134,9 @@ class UsersController extends AppController
             if($user){
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
-            }
+            }else{
             $this->Flash->error("Your username or password is incorrect");
+            }
         }
     }
 
@@ -141,8 +163,6 @@ class UsersController extends AppController
         ]);
 
 //        debug($userclass);
-
-
         $userclasses = $userclasses->find()->where(['user_id' => $id]);
 
         foreach($userclasses as $test){

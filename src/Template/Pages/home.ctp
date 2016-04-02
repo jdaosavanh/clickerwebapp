@@ -45,10 +45,12 @@ $cakeDescription = 'Clicker App';
     <header>
         <div class="header-image">
             <h1>The Simple Clicker App</h1>
-            <div class="login" id="login-modal">
-                <a id="login" rel="leanModal" name="test" href="#show_login_modal">Login/Sign Up</a>
-
-            </div>
+<!--            <div class="login" id="login-modal">-->
+<!--                <a id="login" rel="leanModal" name="test" href="#show_login_modal">Login/Sign Up</a>-->
+<!---->
+<!--            </div>-->
+            <div><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login/Sign Up</button>
+            <button class="btn btn-info btn-lg"><?php echo $this->HTML->link('Logout', array('controller' => 'users','action' => 'logout')); ?></button>
         </div>
     </header>
     <div id="content">
@@ -61,17 +63,21 @@ $cakeDescription = 'Clicker App';
             </div>
 
         </div>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
+
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Modal Header</h4>
+                        <?php echo $this->HTML->link('Login', array('controller' => 'users','action' => 'login')); ?>
+                        <?php echo $this->Form->create('User', array('url'=>array('controller'=>'users','action'=>'login'))); ?>
                     </div>
                     <div class="modal-body">
                         <p>Some text in the modal.</p>
