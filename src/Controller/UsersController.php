@@ -20,8 +20,8 @@ class UsersController extends AppController
     }
 
     public function beforeFilter(Event $event){
-        $this->Auth->allow('userid');
-        $this->Auth->allow('add');
+        $this->Auth->allow(['userid','register','logout']);
+//        $this->Auth->allow('add');
 
         if ($this->RequestHandler->accepts('html')) {
             // Execute code only if client accepts an HTML (text/html)
@@ -69,16 +69,16 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function register()
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Account has been created.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__('Account was not created. Please, try again.'));
             }
         }
         $this->set(compact('user'));
@@ -133,11 +133,16 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if($user){
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect($this->Auth->redirectUrl('/users/'.$this->Auth->user('id')));
             }else{
             $this->Flash->error("Your username or password is incorrect");
             }
         }
+    }
+
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
     }
 
     public function userid($id = null){
@@ -148,7 +153,11 @@ class UsersController extends AppController
         $user = $this->Users->get($id);
         $this->set('user_email', $user['email']);
         $this->set('_serialize', ['user_email']);
-
+        //send user id
+        //Send user email
+        $user = $this->Users->get($id);
+        $this->set('user_id', $user['id']);
+        $this->set('_serialize', ['user_id']);
 
 
         debug($user);
@@ -171,25 +180,6 @@ class UsersController extends AppController
 
         $this->set('userclasses', $userclasses);
         $this->set('_serialize', ['userclasses']);
-//
-//        $userclass = $userclasses->get($id, [
-//            'contain' => ['Users', 'Questions']
-//        ]);
-//
-//        debug($userclass);
-//        $this->set('userclass', $userclass);
-//        $this->set('_serialize', ['userclass']);
-//
-//
-//
-//        $this->paginate = [
-//            'contain' => ['Users']
-//        ];
-//
-//        $userclasses = $this->paginate($userclasses);
-//
-//        $this->set(compact('userclasses'));
-//        $this->set('_serialize', ['userclasses']);
     }
 
 

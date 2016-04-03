@@ -49,8 +49,16 @@ $cakeDescription = 'Clicker App';
 <!--                <a id="login" rel="leanModal" name="test" href="#show_login_modal">Login/Sign Up</a>-->
 <!---->
 <!--            </div>-->
-            <div><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login/Sign Up</button>
-            <button class="btn btn-info btn-lg"><?php echo $this->HTML->link('Logout', array('controller' => 'users','action' => 'logout')); ?></button>
+            <div>
+<!--                --><?php //debug($this->request->session()->read('Auth.User')); ?>
+                <?php if(!$loggedIn): ?>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login/Sign Up</button>
+                <button class="btn btn-info btn-lg"><?php echo $this->HTML->link('Login', array('controller' => 'users','action' => 'login')); ?></button>
+                <button class="btn btn-info btn-lg"><?php echo $this->HTML->link('Register', array('controller' => 'users','action' => 'register')); ?></button>
+                <?php else: ?>
+                    <button class="btn btn-info btn-lg"><?php echo $this->HTML->link('Account ', array('controller' => 'users','action' => $this->request->session()->read('Auth.User.id'))); ?></button>
+                    <button class="btn btn-info btn-lg"><?php echo $this->HTML->link('Logout', array('controller' => 'users','action' => 'logout')); ?></button>
+                <?php endif; ?>
         </div>
     </header>
     <div id="content">
@@ -76,15 +84,28 @@ $cakeDescription = 'Clicker App';
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Modal Header</h4>
-                        <?php echo $this->HTML->link('Login', array('controller' => 'users','action' => 'login')); ?>
-                        <?php echo $this->Form->create('User', array('url'=>array('controller'=>'users','action'=>'login'))); ?>
+                        <div class="login-home">
+                            <h1>Login</h1>
+                            <?= $this->Form->create(); ?>
+                            <?= $this->Form->input('email'); ?>
+                            <?= $this->Form->input('password'); ?>
+                            <?= $this->Form->button('Login'); ?>
+                            <?= $this->Form->end(); ?>
+                        </div>
+                        <div class="create-account-home">
+                            <?= $this->Form->create() ?>
+                            <fieldset>
+                                <legend><?= __('Create User') ?></legend>
+                                <?php
+                                echo $this->Form->input('email');
+                                echo $this->Form->input('password');
+                                ?>
+                            </fieldset>
+                            <?= $this->Form->button(__('Submit')) ?>
+                            <?= $this->Form->end() ?>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+
                 </div>
 
             </div>
