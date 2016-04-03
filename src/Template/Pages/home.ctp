@@ -52,7 +52,7 @@ $cakeDescription = 'Clicker App';
             <div>
 <!--                --><?php //debug($this->request->session()->read('Auth.User')); ?>
                 <?php if(!$loggedIn): ?>
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login/Sign Up</button>
+<!--                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login/Sign Up</button>-->
                 <button class="btn btn-info btn-lg"><?php echo $this->HTML->link('Login', array('controller' => 'users','action' => 'login')); ?></button>
                 <button class="btn btn-info btn-lg"><?php echo $this->HTML->link('Register', array('controller' => 'users','action' => 'register')); ?></button>
                 <?php else: ?>

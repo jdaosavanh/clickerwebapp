@@ -54,6 +54,7 @@ class UserclassesController extends AppController
     {
         $userclass = $this->Userclasses->newEntity();
         if ($this->request->is('post')) {
+            $this->request->data['user_id'] = $this->Auth->user('id');
             $userclass = $this->Userclasses->patchEntity($userclass, $this->request->data);
             if ($this->Userclasses->save($userclass)) {
                 $this->Flash->success(__('The userclass has been saved.'));

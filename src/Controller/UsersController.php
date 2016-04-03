@@ -160,11 +160,11 @@ class UsersController extends AppController
         $this->set('_serialize', ['user_id']);
 
 
-        debug($user);
+//        debug($user);
 
         $userclasses = TableRegistry::get('Userclasses');
 
-        debug($userclasses);
+//        debug($userclasses);
 
         //Get by user id
         $userclass = $userclasses->get($id, [
@@ -174,9 +174,9 @@ class UsersController extends AppController
 //        debug($userclass);
         $userclasses = $userclasses->find()->where(['user_id' => $id]);
 
-        foreach($userclasses as $test){
-            debug($test);
-        }
+//        foreach($userclasses as $test){
+//            debug($test);
+//        }
 
         $this->set('userclasses', $userclasses);
         $this->set('_serialize', ['userclasses']);
