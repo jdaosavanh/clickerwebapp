@@ -28,9 +28,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('styles.css') ?>
 <!--    --><?php //echo $this->Html->css('bootstrap.min.css');?>
 <!--    --><?php //echo $this->Html->javascript('jquery.js');?>
-<!--    --><?php //echo $this->Html->javascript('bootstrap.min.js');?>
+<!--    --><?php //echo $this->javascript('bootstrap.min.js');?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -44,8 +45,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <section class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
+                <?php if($loggedIn): ?>
+                <li><?php echo $this->HTML->link('Logout', array('controller' => 'users','action' => 'logout')); ?></li>
+                <?php endif; ?>
             </ul>
         </section>
     </nav>
