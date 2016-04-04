@@ -113,22 +113,36 @@ class UserclassesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function questions($id = null){
+    public function questions($id = null)
+    {
 
-            //Getting all passed parameters
-            $userclasses = $this->request->params['pass'];
+        //Getting all passed parameters
+        $userclasses = $this->request->params['pass'];
 
-            //Get all questions that have this user calss id
-            $questions = TableRegistry::get('Questions');
-            debug($questions);
+        //Get all questions that have this user calss id
+        $questions = TableRegistry::get('Questions');
+//            debug($questions);
 
-            $questions = $questions->find()->where(['userclass_id' => $id]);
+        $questions = $questions->find()->where(['userclass_id' => $id]);
 
-            foreach($questions as $question){
-                debug($question);
-             }
-            $this->set('questions', $questions);
-            $this->set('_serialize', ['questions']);
+        //get answers for questions
+        $allanswers = TableRegistry::get('Answers');
+        $answers = array();
+        foreach ($questions as $question) {
+                array_push($answers,$allanswers->find()->where(['question_id' => $question['id']]));
+         }
+//         debug($answers[0]);
+        foreach($answers[0] as $test){
+            debug($test);
+        }
+//            foreach($questions as $question){
+//                debug($question);
+//             }
+        $this->set('questions', $questions);
+        $this->set('_serialize', ['questions']);
+
+        $this->set('answers', $answers);
+        $this->set('_serialize', ['answers']);
 
 
     }

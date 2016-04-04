@@ -1,4 +1,4 @@
-<h1>Hello</h1>
+<h1>Questions</h1>
 
 <?php foreach ($questions as $question): ?>
   <div><?= $question->type ?></div>
