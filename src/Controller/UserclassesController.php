@@ -132,9 +132,9 @@ class UserclassesController extends AppController
                 array_push($answers,$allanswers->find()->where(['question_id' => $question['id']]));
          }
 //         debug($answers[0]);
-        foreach($answers[0] as $test){
-            debug($test);
-        }
+//        foreach($answers[0] as $test){
+//            debug($test);
+//        }
 //            foreach($questions as $question){
 //                debug($question);
 //             }
@@ -143,6 +143,14 @@ class UserclassesController extends AppController
 
         $this->set('answers', $answers);
         $this->set('_serialize', ['answers']);
+
+        $user = $this->Auth->user('id');
+        $this->set('user_id', $user);
+        $this->set('_serialize', ['user_id']);
+//        Doesn't matter just save the fucken class in the add question method
+        $class_id = $this->Userclasses->get($id);
+        $this->set('class_id', $class_id['id']);
+        $this->set('_serialize', ['class_id']);
 
 
     }

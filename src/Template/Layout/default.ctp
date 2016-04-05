@@ -38,10 +38,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="left">
-           <!-- <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li> -->
+        <ul class="left home-list">
+           <li class="name">
+                <h1> <?php echo $this->Html->link('Home',array('controller' => 'pages', 'action' => 'display', 'home'))?></h1>
+
+            </li>
+            <li class="name">
+            <h1> <?php echo $this->Html->link('Back',$this->request->referer()); ?></h1>
+            </li>
         </ul>
         <section class="top-bar-section">
             <ul class="right">
