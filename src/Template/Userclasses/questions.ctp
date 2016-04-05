@@ -2,7 +2,13 @@
 <?php $i = 0 ?>
 <?php if($questions): ?>
 <?php foreach ($questions as $question): ?>
-  <div class="questions-con"><?= $question->type ?></div>
+    <div class="row">
+        <div class="questions-con small-2 columns"><?= $question->type ?></div>
+        <div class="questions-add-answer small-2 columns"><?php if($user_id == $this->request->session()->read('Auth.User.id')):?>
+                <?php echo $this->Html->link('Add Answer', array('controller' => 'answers',
+                    'action'=> 'add', $question->id, $class_id)) ?>
+            <?php endif; ?></div>
+    </div>
     <div class="answers-con">
     <?php foreach($answers[$i++] as $answer): ?>
         <div><?php echo $answer['answer']; ?></div>

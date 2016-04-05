@@ -11,7 +11,7 @@
     <fieldset>
         <legend><?= __('Add Answer') ?></legend>
         <?php
-            echo $this->Form->input('question_id', ['options' => $questions]);
+//            echo $this->Form->input('question_id', ['options' => $questions]);
             echo $this->Form->input('answer');
         ?>
     </fieldset>
