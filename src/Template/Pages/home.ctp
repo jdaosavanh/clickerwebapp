@@ -63,7 +63,7 @@ $cakeDescription = 'Clicker App';
     </header>
     <div id="content">
 
-        <div class="row">
+        <div class="row center-block">
             <div class="row">
                 <div class="columns large-12 checks lightgreenblock">
                     <p>Here are the steps to start using the application</p>
