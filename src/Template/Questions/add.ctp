@@ -14,10 +14,12 @@
     <?= $this->Form->create($question) ?>
     <fieldset>
         <legend><?= __('Add Question') ?></legend>
+        <div class="question-hide-type-text">
         <?php
             //echo $this->Form->input('userclass_id', ['options' => $userclasses]);
             echo $this->Form->input('type');
         ?>
+            </div>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

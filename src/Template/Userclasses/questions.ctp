@@ -17,6 +17,11 @@
     <?php endif; ?>
 </div>
 
+<div class="go-back">
+    <?php echo $this->Html->link('Go back to Classes', array('controller' => 'users',
+        'action'=> $this->request->session()->read('Auth.User.id'))) ?>
+</div>
+
 <?php foreach ($questions as $question): ?>
     <!--
     <tr>

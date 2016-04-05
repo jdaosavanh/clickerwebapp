@@ -1,8 +1,8 @@
-<h1>Hello</h1>
-<div class="user-email"><?= h($user_email) ?></div>
-<div class="user-email"><?= h($user_id) ?></div>
+<h1>Hello <?= h($user_email) ?></h1>
+
 
 <div class="User-classes">
+    <div class="user-list-of-classes">These are the classes you created:</div>
 <?php foreach ($userclasses as $userclass): ?>
     <div class="row medium-collapse large-collapse ">
         <div class="small-3 columns">

@@ -58,7 +58,7 @@ class UserclassesController extends AppController
             $userclass = $this->Userclasses->patchEntity($userclass, $this->request->data);
             if ($this->Userclasses->save($userclass)) {
                 $this->Flash->success(__('The userclass has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'users','action' => $user = $this->Auth->user('id')]);
             } else {
                 $this->Flash->error(__('The userclass could not be saved. Please, try again.'));
             }

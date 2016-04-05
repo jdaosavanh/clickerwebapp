@@ -9,4 +9,11 @@
 }
 .add-question{
     margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.question-hide-type-text .input label{
+    display: none;
+}
+.add-class{
+    margin-top: 2rem;
 }

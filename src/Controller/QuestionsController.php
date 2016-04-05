@@ -58,8 +58,7 @@ class QuestionsController extends AppController
             $question = $this->Questions->patchEntity($question, $this->request->data);
             if ($this->Questions->save($question)) {
                 $this->Flash->success(__('The question has been saved.'));
-                $this->Flash->success(__($id));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'userclasses','action' => 'questions',$id]);
             } else {
                 $this->Flash->error(__('The question could not be saved. Please, try again.'));
             }
