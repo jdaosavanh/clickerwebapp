@@ -9,7 +9,8 @@
             <?php echo $this->Html->link($userclass->class, array('controller' => 'userclasses',
                 'action'=> 'questions', $userclass->id)) ?></div>
         <?php if($user_id == $this->request->session()->read('Auth.User.id')):?>
-        <div class="small-3 columns"><?php echo 'Add Questions' ?></div>
+            <div class="small-3 columns"><?php echo $this->Html->link('Add Questions', array('controller' => 'userclasses',
+            'action'=> 'questions', $userclass->id)) ?></div>
         <div class="small-3 columns"><?php echo 'Delete' ?></div>
         <?php endif; ?>
     </div>
