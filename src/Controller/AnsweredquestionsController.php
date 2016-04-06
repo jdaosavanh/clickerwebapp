@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Answeredquestions Controller
@@ -9,7 +10,10 @@ use App\Controller\AppController;
  * @property \App\Model\Table\AnsweredquestionsTable $Answeredquestions */
 class AnsweredquestionsController extends AppController
 {
-
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['add']);
+    }
     /**
      * Index method
      *
@@ -55,7 +59,7 @@ class AnsweredquestionsController extends AppController
             $this->request->data['question_id'] = $id;
             $answeredquestion = $this->Answeredquestions->patchEntity($answeredquestion, $this->request->data);
             if ($this->Answeredquestions->save($answeredquestion)) {
-                $this->Flash->success(__('The answeredquestion has been saved.'));
+                $this->Flash->success(__("You're answer has been save."));
                 return $this->redirect(['controller' => 'userclasses','action' => 'classquestions',$id2]);
             } else {
                 $this->Flash->error(__('The answeredquestion could not be saved. Please, try again.'));

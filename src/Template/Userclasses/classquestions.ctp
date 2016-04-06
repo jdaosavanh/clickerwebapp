@@ -23,6 +23,6 @@
 
     <div class="go-back small-12 columns">
         <?php echo $this->Html->link('Go back to Classes', array('controller' => 'users',
-            'action'=> $this->request->session()->read('Auth.User.id'))) ?>
+            'action'=> $class_id)) ?>
     </div>
 </div>
