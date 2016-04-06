@@ -1,0 +1,19 @@
+.home-list li{
+    float: left;
+}
+.answers-con{
+    margin-left:2rem;
+}
+.questions-con{
+    /*margin-top: 1rem;*/
+}
+.add-question{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.question-hide-type-text .input label{
+    display: none;
+}
+.add-class{
+    margin-top: 2rem;
+}
