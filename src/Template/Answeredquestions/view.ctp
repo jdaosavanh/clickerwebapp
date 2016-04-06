@@ -17,6 +17,14 @@
             <td><?= $answeredquestion->has('question') ? $this->Html->link($answeredquestion->question->id, ['controller' => 'Questions', 'action' => 'view', $answeredquestion->question->id]) : '' ?></td>
         </tr>
         <tr>
+            <th><?= __('Student') ?></th>
+            <td><?= h($answeredquestion->student) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Answertoquestion') ?></th>
+            <td><?= h($answeredquestion->answertoquestion) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($answeredquestion->id) ?></td>
         </tr>
@@ -29,12 +37,4 @@
             <td><?= h($answeredquestion->modified) ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Student Id') ?></h4>
-        <?= $this->Text->autoParagraph(h($answeredquestion->student_id)); ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Answertoquestion') ?></h4>
-        <?= $this->Text->autoParagraph(h($answeredquestion->answertoquestion)); ?>
-    </div>
 </div>

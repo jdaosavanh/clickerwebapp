@@ -6,7 +6,7 @@ use Cake\ORM\Entity;
 /**
  * Answeredquestion Entity.
  *
- * @property int $id * @property int $question_id * @property \App\Model\Entity\Question $question * @property string $student_id * @property \App\Model\Entity\Student $student * @property string $answertoquestion * @property \Cake\I18n\Time $created * @property \Cake\I18n\Time $modified */
+ * @property int $id * @property int $question_id * @property \App\Model\Entity\Question $question * @property string $student * @property string $answertoquestion * @property \Cake\I18n\Time $created * @property \Cake\I18n\Time $modified */
 class Answeredquestion extends Entity
 {
 

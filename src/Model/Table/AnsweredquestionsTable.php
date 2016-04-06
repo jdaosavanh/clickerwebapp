@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
 /**
  * Answeredquestions Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Questions * @property \Cake\ORM\Association\BelongsTo $Students */
+ * @property \Cake\ORM\Association\BelongsTo $Questions */
 class AnsweredquestionsTable extends Table
 {
 
@@ -34,7 +34,6 @@ class AnsweredquestionsTable extends Table
             'foreignKey' => 'question_id',
             'joinType' => 'INNER'
         ]);
-
     }
 
     /**
@@ -48,7 +47,9 @@ class AnsweredquestionsTable extends Table
         $validator
             ->integer('id')            ->allowEmpty('id', 'create');
         $validator
-            ->allowEmpty('answertoquestion');
+            ->requirePresence('student', 'create')            ->notEmpty('student');
+        $validator
+            ->requirePresence('answertoquestion', 'create')            ->notEmpty('answertoquestion');
         return $validator;
     }
 

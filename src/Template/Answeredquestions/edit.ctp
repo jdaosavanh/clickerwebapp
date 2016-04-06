@@ -18,7 +18,7 @@
         <legend><?= __('Edit Answeredquestion') ?></legend>
         <?php
             echo $this->Form->input('question_id', ['options' => $questions]);
-            echo $this->Form->input('student_id');
+            echo $this->Form->input('student');
             echo $this->Form->input('answertoquestion');
         ?>
     </fieldset>

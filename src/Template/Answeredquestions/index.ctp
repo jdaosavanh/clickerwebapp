@@ -13,6 +13,8 @@
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('question_id') ?></th>
+                <th><?= $this->Paginator->sort('student') ?></th>
+                <th><?= $this->Paginator->sort('answertoquestion') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
@@ -23,6 +25,8 @@
             <tr>
                 <td><?= $this->Number->format($answeredquestion->id) ?></td>
                 <td><?= $answeredquestion->has('question') ? $this->Html->link($answeredquestion->question->id, ['controller' => 'Questions', 'action' => 'view', $answeredquestion->question->id]) : '' ?></td>
+                <td><?= h($answeredquestion->student) ?></td>
+                <td><?= h($answeredquestion->answertoquestion) ?></td>
                 <td><?= h($answeredquestion->created) ?></td>
                 <td><?= h($answeredquestion->modified) ?></td>
                 <td class="actions">

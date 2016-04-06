@@ -18,7 +18,7 @@ class AnsweredquestionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Questions', 'Students']
+            'contain' => ['Questions']
         ];
         $answeredquestions = $this->paginate($this->Answeredquestions);
 
@@ -36,7 +36,7 @@ class AnsweredquestionsController extends AppController
     public function view($id = null)
     {
         $answeredquestion = $this->Answeredquestions->get($id, [
-            'contain' => ['Questions', 'Students']
+            'contain' => ['Questions']
         ]);
 
         $this->set('answeredquestion', $answeredquestion);
@@ -62,7 +62,7 @@ class AnsweredquestionsController extends AppController
             }
         }
         $questions = $this->Answeredquestions->Questions->find('list', ['limit' => 200]);
-        $this->set(compact('answeredquestion', 'questions', 'students'));
+        $this->set(compact('answeredquestion', 'questions'));
         $this->set('_serialize', ['answeredquestion']);
     }
 
@@ -88,8 +88,7 @@ class AnsweredquestionsController extends AppController
             }
         }
         $questions = $this->Answeredquestions->Questions->find('list', ['limit' => 200]);
-        $students = $this->Answeredquestions->Students->find('list', ['limit' => 200]);
-        $this->set(compact('answeredquestion', 'questions', 'students'));
+        $this->set(compact('answeredquestion', 'questions'));
         $this->set('_serialize', ['answeredquestion']);
     }
 
