@@ -155,4 +155,39 @@ class UserclassesController extends AppController
 
     }
 
+    public function classquestions($id = null)
+    {
+
+        //Getting all passed parameters
+        $userclasses = $this->request->params['pass'];
+
+        //Get all questions that have this user calss id
+        $questions = TableRegistry::get('Questions');
+
+        $questions = $questions->find()->where(['userclass_id' => $id]);
+
+        //get answers for questions
+        $allanswers = TableRegistry::get('Answers');
+        $answers = array();
+        foreach ($questions as $question) {
+            array_push($answers,$allanswers->find()->where(['question_id' => $question['id']]));
+        }
+        $this->set('questions', $questions);
+        $this->set('_serialize', ['questions']);
+
+        $this->set('answers', $answers);
+        $this->set('_serialize', ['answers']);
+
+        $user = $this->Auth->user('id');
+        $this->set('user_id', $user);
+        $this->set('_serialize', ['user_id']);
+
+//      Doesn't matter just save the fucken class in the add question method
+        $class_id = $this->Userclasses->get($id);
+        $this->set('class_id', $class_id['id']);
+        $this->set('_serialize', ['class_id']);
+
+
+    }
+
 }
