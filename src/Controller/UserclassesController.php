@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
-
+use Cake\Event\Event;
 /**
  * Userclasses Controller
  *
@@ -11,7 +11,10 @@ use Cake\ORM\TableRegistry;
  */
 class UserclassesController extends AppController
 {
-
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['classquestions']);
+    }
     /**
      * Index method
      *

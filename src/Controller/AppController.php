@@ -58,7 +58,7 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'view', 'display','logout']);
+        $this->Auth->allow(['display','logout','classquestions']);
     }
 
     /**
