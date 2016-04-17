@@ -26,3 +26,32 @@
             'action'=> $class_id)) ?>
     </div>
 </div>
+<a  class="button anthracite-gradient" onclick="sendAnswer('11111','4','a')">submit </a>
+<script>
+    function sendAnswer(studentid,question_id,answer)
+    {
+
+
+            $.ajax({
+                type:"POST",
+                data:{student:studentid, question_id:question_id,answertoquestion:answer},
+                url:"/answeredquestions/add/",
+
+                success : function(data) {
+                    console.log(data);
+//                    console.log(studentid);
+//                    console.log(question_id);
+//                    console.log(answer);
+
+
+                },
+                error : function(data) {
+                    console.log(data);
+                    alert("false");
+                }
+            });
+
+
+
+    }
+</script>
