@@ -113,7 +113,7 @@ class UserclassesController extends AppController
         } else {
             $this->Flash->error(__('The userclass could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'users','action' => $user = $this->Auth->user('id')]);
     }
 
     public function questions($id = null)

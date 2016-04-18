@@ -10,7 +10,7 @@
                     'action'=> 'questions', $userclass->id)) ?></div>
                 <div class="small-3 columns"><?php echo $this->Html->link('Add Questions', array('controller' => 'userclasses',
                 'action'=> 'questions', $userclass->id)) ?></div>
-            <div class="small-3 columns"><?php echo 'Delete' ?></div>
+            <div class="small-3 columns"><?= $this->Form->postLink(__('Delete'), ['controller'=>'userclasses','action' => 'delete', $userclass->id], ['confirm' => __('Are you sure you want to delete # {0}?', $userclass->id)]) ?></div>
         </div>
     <?php endforeach; ?>
     </div>
