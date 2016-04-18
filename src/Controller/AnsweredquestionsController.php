@@ -79,7 +79,7 @@ class AnsweredquestionsController extends AppController
             $answeredquestion->answertoquestion = $this->request->data('answertoquestion');
             $answeredquestion->question_id= $this->request->data('question_id');
             if ($this->Answeredquestions->save($answeredquestion)) {
-                $this->Flash->success(__("You're answer has been save."));
+
             }
 
 

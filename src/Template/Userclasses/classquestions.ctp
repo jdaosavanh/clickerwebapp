@@ -2,7 +2,12 @@
 <?php $i = 0 ?>
 <?php if($questions): ?>
 <div class="row">
-    <h1>You should answer these:</h1>
+    <h1>Derpa:</h1>
+   <div class="large-12 columns">
+       <div class="large-5 columns">
+           <input type="text" placeholder="Please enter your Student ID" name="studentID" maxlength="255" id="studentid">
+       </div>
+   </div>
     <?php foreach ($questions as $question): ?>
 
         <div class="questions-con small-5 columns"><?= $question->type ?></div>
@@ -12,9 +17,15 @@
             <?php endif; ?></div>
 
         <div class="answers-con small-12 columns">
+            <form for=<?php echo $question->id ?> >
+                <?php $answercount= 1 ?>
             <?php foreach($answers[$i++] as $answer): ?>
-                <div><?php echo $answer['answer']; ?></div>
+
+                <div> <input type="radio" id=<?php echo $answercount++ ?> name=<?php echo $question->id ?> value="<?php echo $answer['answer'];  ?>" /> <?php echo $answer['answer']; ?></div>
+
             <?php endforeach; ?>
+            </form>
+            <a class="button anthracite-gradient" onclick="sendAnswer(<?php echo $question->id ?> )">submit </a>
         </div>
 
     <?php endforeach; ?>
@@ -26,28 +37,24 @@
             'action'=> $class_id)) ?>
     </div>
 </div>
-<a  class="button anthracite-gradient" onclick="sendAnswer('11111','4','a')">submit </a>
 <script>
-    function sendAnswer(studentid,question_id,answer)
+    function sendAnswer(question_id)
     {
-
+        var student =  $("#studentid").val();
+        var answer = $("input[name=" + question_id + "]:checked").val();
 
             $.ajax({
                 type:"POST",
-                data:{student:studentid, question_id:question_id,answertoquestion:answer},
+                data:{student:student, question_id:question_id,answertoquestion:answer},
                 url:"/answeredquestions/add/",
 
                 success : function(data) {
-                    console.log(data);
-//                    console.log(studentid);
-//                    console.log(question_id);
-//                    console.log(answer);
+                    alert("Submitted")
 
 
                 },
                 error : function(data) {
-                    console.log(data);
-                    alert("false");
+                    alert("Error");
                 }
             });
 
