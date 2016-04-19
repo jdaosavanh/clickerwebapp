@@ -52,7 +52,7 @@ class AnswersController extends AppController
     public function add($id = null, $id2 = null)
     {
         $answer = $this->Answers->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post') && !$this->request->is('ajax')) {
             $this->request->data['question_id'] = $id;
             $answer = $this->Answers->patchEntity($answer, $this->request->data);
             if ($this->Answers->save($answer)) {
@@ -60,6 +60,17 @@ class AnswersController extends AppController
                 return $this->redirect(['controller' => 'userclasses','action' => 'questions',$id2]);
             } else {
                 $this->Flash->error(__('The answer could not be saved. Please, try again.'));
+            }
+        }
+
+        if($this->request->is('ajax')){
+            $this->response->disableCache();
+            $this->autoRender = false;
+
+            $answer->question_id = $this->request->data('question_id');
+            $answer->answer = $this->request->data('answer');
+            if ($this->Answers->save($answer)) {
+
             }
         }
         $questions = $this->Answers->Questions->find('list', ['limit' => 200]);

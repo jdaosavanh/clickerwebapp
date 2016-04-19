@@ -6,10 +6,12 @@
 <?php foreach ($questions as $question): ?>
 
         <div class="questions-con small-5 columns"><?= $question->type ?></div>
-        <div class="questions-add-answer small-2 columns"><?php if($user_id == $this->request->session()->read('Auth.User.id')):?>
-                <?php echo $this->Html->link('Add Answer', array('controller' => 'answers',
-                    'action'=> 'add', $question->id, $class_id)) ?>
-            <?php endif; ?></div>
+<!--        <div class="questions-add-answer small-2 columns">--><?php //if($user_id == $this->request->session()->read('Auth.User.id')):?>
+<!--                --><?php //echo $this->Html->link('Add Answer', array('controller' => 'answers',
+//                    'action'=> 'add', $question->id, $class_id)) ?>
+<!--            --><?php //endif; ?><!--</div>-->
+    <div class="questions-add-answer small-2 columns"><input type="text" placeholder="Add Answer to question" maxlength="255" id="addAnswer<?php echo $question->id ?>"></div>
+    <div class="questions-add-answer small-2 columns"><a class="button anthracite-gradient" onclick="addAnswer(<?php echo $question->id ?> )">Add Answer </a></div>
     <div class="delete-question small-3 columns"><?= $this->Form->postLink(__('Delete'), ['controller'=>'questions','action' => 'delete', $question->id,$class_id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?></div>
 
         <div class="answers-con small-12 columns">
@@ -56,8 +58,22 @@
         });
     }
 
-    function addAnswer()
+    function addAnswer(question_id)
     {
+        var addAnswer =  $("#addAnswer"+question_id).val();
 
+        $.ajax({
+            type:"POST",
+            data:{question_id:question_id, answer:addAnswer},
+            url:"/answers/add/",
+
+            success : function(data) {
+                location.reload();
+
+            },
+            error : function(data) {
+                alert("Error");
+            }
+        });
     }
 </script>
