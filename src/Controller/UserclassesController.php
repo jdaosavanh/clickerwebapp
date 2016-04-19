@@ -172,7 +172,7 @@ class UserclassesController extends AppController
 
     }
 
-    public function classquestions($id = null)
+    public function classquestions($id = null, $id2 = null)
     {
 
         //Getting all passed parameters
@@ -203,6 +203,10 @@ class UserclassesController extends AppController
         $class_id = $this->Userclasses->get($id);
         $this->set('class_id', $class_id['id']);
         $this->set('_serialize', ['class_id']);
+
+        //return user id that is pass into the parmeter
+        $this->set('return_id', $id2);
+        $this->set('_serialize', ['return_id']);
 
 
     }

@@ -34,7 +34,7 @@
 
     <div class="go-back small-12 columns">
         <?php echo $this->Html->link('Go back to Classes', array('controller' => 'users',
-            'action'=> $class_id)) ?>
+            'action'=> $return_id)) ?>
     </div>
 </div>
 <script>

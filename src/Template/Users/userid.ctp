@@ -28,7 +28,7 @@
         <div class="row medium-collapse large-collapse ">
             <div class="small-3 columns">
                 <?php echo $this->Html->link($userclass->class, array('controller' => 'userclasses',
-                    'action'=> 'classquestions', $userclass->id)) ?>
+                    'action'=> 'classquestions', $userclass->id, $user_id)) ?>
             </div>
         </div>
     <?php endforeach; ?>
