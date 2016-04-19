@@ -111,7 +111,7 @@ class AnswersController extends AppController
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null,$id2 = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $answer = $this->Answers->get($id);
@@ -120,6 +120,6 @@ class AnswersController extends AppController
         } else {
             $this->Flash->error(__('The answer could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'userclasses','action' => 'questions',$id2]);
     }
 }

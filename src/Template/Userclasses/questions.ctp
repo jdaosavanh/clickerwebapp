@@ -16,7 +16,8 @@
 
         <div class="answers-con small-12 columns">
         <?php foreach($answers[$i++] as $answer): ?>
-            <div><?php echo $answer['answer']; ?></div>
+            <div class="delete-answer small-2 columns"><?php echo $answer['answer']; ?></div>
+            <div class="delete-answer small-10 columns"><?= $this->Form->postLink(__('Delete'), ['controller'=>'answers','action' => 'delete', $answer->id,$class_id], ['confirm' => __('Are you sure you want to delete # {0}?', $answer->id)]) ?> </div>
         <?php endforeach; ?>
         </div>
 
