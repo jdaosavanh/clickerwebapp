@@ -25,6 +25,8 @@
         <?php echo $this->Html->link('Add Questions', array('controller' => 'questions',
             'action'=> 'add', $class_id)) ?>
     <?php endif; ?>
+    <input type="text" placeholder="Please enter your Question" maxlength="255" id="addquestion">
+    <a class="button anthracite-gradient" onclick="addQuestion(<?php echo $class_id ?> )">Add Question </a>
 </div>
 
 <div class="go-back small-12 columns">
@@ -32,3 +34,25 @@
         'action'=> $this->request->session()->read('Auth.User.id'))) ?>
 </div>
 </div>
+<script>
+    function addQuestion($class_id)
+    {
+        var addquestion =  $("#addquestion").val();
+//        var answer = $("input[name=" + question_id + "]:checked").val();
+
+        $.ajax({
+            type:"POST",
+            data:{student:student, question_id:question_id,answertoquestion:answer},
+            url:"/answeredquestions/add/",
+
+            success : function(data) {
+                console.log('submit');
+                alert("Submitted");
+
+            },
+            error : function(data) {
+                alert("Error");
+            }
+        });
+    }
+</script>
