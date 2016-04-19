@@ -16,8 +16,11 @@
     </div>
     <div class="add-class">
         <?php if($user_id == $this->request->session()->read('Auth.User.id')):?>
-            <?php echo $this->Html->link('Add Class', array('controller' => 'userclasses',
-                'action'=> 'add', $user_id)) ?>
+<!--            --><?php //echo $this->Html->link('Add Class', array('controller' => 'userclasses',
+//                'action'=> 'add', $user_id)) ?>
+
+            <input type="text" placeholder="Add class here" maxlength="255" id="classname">
+            <a class="button anthracite-gradient" onclick="addClass(<?php echo $user_id ?> )">Add Class </a>
         <?php endif; ?>
     </div>
 <?php else: ?>
@@ -30,4 +33,23 @@
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
+<script>
+    function addClass(user_id)
+    {
+        var classname =  $("#classname").val();
+        $.ajax({
+            type:"POST",
+            data:{classname:classname, user_id:user_id},
+            url:"/userclasses/add/",
+
+            success : function(data) {
+                location.reload();
+
+            },
+            error : function(data) {
+                alert("Error");
+            }
+        });
+    }</script>
+
 

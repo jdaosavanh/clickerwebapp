@@ -56,7 +56,7 @@ class UserclassesController extends AppController
     public function add()
     {
         $userclass = $this->Userclasses->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post') && !$this->request->is('ajax')) {
             $this->request->data['user_id'] = $this->Auth->user('id');
             $userclass = $this->Userclasses->patchEntity($userclass, $this->request->data);
             if ($this->Userclasses->save($userclass)) {
@@ -65,6 +65,20 @@ class UserclassesController extends AppController
             } else {
                 $this->Flash->error(__('The userclass could not be saved. Please, try again.'));
             }
+        }
+        if($this->request->is('ajax')) {
+            $this->response->disableCache();
+            $this->autoRender = false;
+
+            $userclass->user_id = $this->request->data('user_id');
+            if (!empty($this->request->data('classname'))) {
+                $userclass->class = $this->request->data('classname');
+                $this->Userclasses->save($userclass);
+            }
+            else{
+                $this->Flash->error(__('The userclass could not be saved. Please, try again.'));
+            }
+
         }
         $users = $this->Userclasses->Users->find('list', ['limit' => 200]);
         $this->set(compact('userclass', 'users'));
