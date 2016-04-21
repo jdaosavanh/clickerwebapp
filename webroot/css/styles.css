@@ -20,3 +20,10 @@
 .button{
     padding: .6rem;
 }
+.question-block{
+    margin-bottom: 2rem !important;
+}
+
+.answers-ol li{
+    list-style-type: upper-roman;
+}
