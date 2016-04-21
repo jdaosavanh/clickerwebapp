@@ -1,3 +1,7 @@
+h1,h2{
+    font-family: 'MuseoSans_xFat';
+}
+
 .home-list li{
     float: left;
 }
@@ -5,7 +9,7 @@
     margin-left:2rem;
 }
 .questions-con{
-    /*margin-top: 1rem;*/
+    margin-top: .75rem;
 }
 .add-question{
     margin-top: 2rem;
@@ -16,4 +20,30 @@
 }
 .add-class{
     margin-top: 2rem;
+}
+.button{
+    padding: .6rem;
+}
+.question-block{
+    margin-bottom: 2rem !important;
+}
+
+.answers-ol li{
+    list-style-type: inherit;
+}
+
+/*----------------------------User Questions CTP--------------------------------------*/
+.user-list-of-classes{
+   margin-bottom: 1rem;
+}
+.delete-answer{
+    list-style: none;
+}
+.question-answer{
+    list-style: none;
+}
+/*----------------------------UsersID CTP--------------------------------------*/
+.not-login-classes{
+    position: absolute;
+    left:40%;
 }

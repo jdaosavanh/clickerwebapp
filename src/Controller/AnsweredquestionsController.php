@@ -14,6 +14,12 @@ class AnsweredquestionsController extends AppController
     {
         $this->Auth->allow(['add']);
     }
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
     /**
      * Index method
      *
@@ -55,7 +61,7 @@ class AnsweredquestionsController extends AppController
     public function add($id = null, $id2 = null)
     {
         $answeredquestion = $this->Answeredquestions->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post') && !$this->request->is('ajax')) {
             $this->request->data['question_id'] = $id;
             $answeredquestion = $this->Answeredquestions->patchEntity($answeredquestion, $this->request->data);
             if ($this->Answeredquestions->save($answeredquestion)) {
@@ -64,6 +70,19 @@ class AnsweredquestionsController extends AppController
             } else {
                 $this->Flash->error(__('The answeredquestion could not be saved. Please, try again.'));
             }
+        }
+        if($this->request->is('ajax')){
+            $this->response->disableCache();
+            $this->autoRender = false;
+
+            $answeredquestion->student = $this->request->data('student');
+            $answeredquestion->answertoquestion = $this->request->data('answertoquestion');
+            $answeredquestion->question_id= $this->request->data('question_id');
+            if ($this->Answeredquestions->save($answeredquestion)) {
+
+            }
+
+
         }
         $questions = $this->Answeredquestions->Questions->find('list', ['limit' => 200]);
         $this->set(compact('answeredquestion', 'questions'));

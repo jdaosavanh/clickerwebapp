@@ -37,7 +37,9 @@ class UserclassesTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Questions', [
-            'foreignKey' => 'userclass_id'
+            'foreignKey' => 'userclass_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true
         ]);
     }
 

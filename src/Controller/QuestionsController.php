@@ -52,7 +52,7 @@ class QuestionsController extends AppController
     public function add($id = null)
     {
         $question = $this->Questions->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post') && !$this->request->is('ajax')) {
             //I need to get the ID of the class--- figure out how to do that
             $this->request->data['userclass_id'] = $id;
             $question = $this->Questions->patchEntity($question, $this->request->data);
@@ -63,6 +63,18 @@ class QuestionsController extends AppController
                 $this->Flash->error(__('The question could not be saved. Please, try again.'));
             }
         }
+
+        if($this->request->is('ajax')){
+            $this->response->disableCache();
+            $this->autoRender = false;
+
+            $question->userclass_id = $this->request->data('class_id');
+            $question->type = $this->request->data('addquestion');
+            if ($this->Questions->save($question)) {
+
+            }
+        }
+
         $userclasses = $this->Questions->Userclasses->find('list', ['limit' => 200]);
         $this->set(compact('question', 'userclasses'));
         $this->set('_serialize', ['question']);
@@ -101,7 +113,7 @@ class QuestionsController extends AppController
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null,$id2 = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $question = $this->Questions->get($id);
@@ -110,6 +122,6 @@ class QuestionsController extends AppController
         } else {
             $this->Flash->error(__('The question could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'userclasses','action' => 'questions',$id2]);
     }
 }

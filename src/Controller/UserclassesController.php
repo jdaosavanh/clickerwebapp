@@ -56,7 +56,7 @@ class UserclassesController extends AppController
     public function add()
     {
         $userclass = $this->Userclasses->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post') && !$this->request->is('ajax')) {
             $this->request->data['user_id'] = $this->Auth->user('id');
             $userclass = $this->Userclasses->patchEntity($userclass, $this->request->data);
             if ($this->Userclasses->save($userclass)) {
@@ -65,6 +65,20 @@ class UserclassesController extends AppController
             } else {
                 $this->Flash->error(__('The userclass could not be saved. Please, try again.'));
             }
+        }
+        if($this->request->is('ajax')) {
+            $this->response->disableCache();
+            $this->autoRender = false;
+
+            $userclass->user_id = $this->request->data('user_id');
+            if (!empty($this->request->data('classname'))) {
+                $userclass->class = $this->request->data('classname');
+                $this->Userclasses->save($userclass);
+            }
+            else{
+                $this->Flash->error(__('The userclass could not be saved. Please, try again.'));
+            }
+
         }
         $users = $this->Userclasses->Users->find('list', ['limit' => 200]);
         $this->set(compact('userclass', 'users'));
@@ -113,7 +127,7 @@ class UserclassesController extends AppController
         } else {
             $this->Flash->error(__('The userclass could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'users','action' => $user = $this->Auth->user('id')]);
     }
 
     public function questions($id = null)
@@ -158,7 +172,7 @@ class UserclassesController extends AppController
 
     }
 
-    public function classquestions($id = null)
+    public function classquestions($id = null, $id2 = null)
     {
 
         //Getting all passed parameters
@@ -189,6 +203,10 @@ class UserclassesController extends AppController
         $class_id = $this->Userclasses->get($id);
         $this->set('class_id', $class_id['id']);
         $this->set('_serialize', ['class_id']);
+
+        //return user id that is pass into the parmeter
+        $this->set('return_id', $id2);
+        $this->set('_serialize', ['return_id']);
 
 
     }
