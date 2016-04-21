@@ -32,7 +32,7 @@ h1,h2{
     list-style-type: inherit;
 }
 
-/*----------------------------UsersID CTP--------------------------------------*/
+/*----------------------------User Questions CTP--------------------------------------*/
 .user-list-of-classes{
    margin-bottom: 1rem;
 }
@@ -41,4 +41,9 @@ h1,h2{
 }
 .question-answer{
     list-style: none;
+}
+/*----------------------------UsersID CTP--------------------------------------*/
+.not-login-classes{
+    position: absolute;
+    left:40%;
 }

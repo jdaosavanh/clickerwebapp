@@ -24,14 +24,18 @@
         <?php endif; ?>
     </div>
 <?php else: ?>
+    <div class="not-login-classes">
+        <div class="row medium-collapse large-collapse" >
     <?php foreach ($userclasses as $userclass): ?>
-        <div class="row medium-collapse large-collapse ">
-            <div class="small-3 columns">
+
+            <div class="small-12 columns">
                 <?php echo $this->Html->link($userclass->class, array('controller' => 'userclasses',
                     'action'=> 'classquestions', $userclass->id, $user_id)) ?>
             </div>
-        </div>
+
     <?php endforeach; ?>
+        </div>
+    </div>
 <?php endif; ?>
 <script>
     function addClass(user_id)
