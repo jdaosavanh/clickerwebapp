@@ -32,7 +32,9 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->hasMany('Bookmarks', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true
         ]);
     }
 

@@ -3,6 +3,7 @@
 <?php if($questions): ?>
     <div class="row">
     <h1>Questions:</h1>
+
 <?php foreach ($questions as $question): ?>
     <div class="row question-block">
         <div class="questions-con small-5 columns"><?= $question->type ?></div>
@@ -14,20 +15,13 @@
         <div class="questions-add-answer small-2 columns"><a class="button anthracite-gradient" onclick="addAnswer(<?php echo $question->id ?> )">Add Answer </a></div>
         <div class="delete-question small-3 columns"><?= $this->Form->postLink(__('Delete'), ['controller'=>'questions','action' => 'delete', $question->id,$class_id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?></div>
         <div class="answers-con small-12 columns">
-            <ol>
-                <li><div>21312</div>ha</li>
-                <li><div>312312</div>ha</li>
-                <li>ha</li>
-            </ol>
+
             <ol class="answers-ol" type="A">
             <?php foreach($answers[$i++] as $answer): ?>
-                <li>
-                    <div class="delete-answer small-2 columns"><?php echo $answer['answer']; ?></div>
-                <div class="delete-answer small-10 columns"><?= $this->Form->postLink(__('Delete'), ['controller'=>'answers','action' => 'delete', $answer->id,$class_id], ['confirm' => __('Are you sure you want to delete # {0}?', $answer->id)]) ?> </div>
-
-                </li>
-                    <?php endforeach; ?>
-                </ol>
+                <li class="question-answer small-2 columns"><?php echo $answer['answer']; ?></li>
+                <div class="delete-answer "><?= $this->Form->postLink(__('Delete'), ['controller'=>'answers','action' => 'delete', $answer->id,$class_id], ['confirm' => __('Are you sure you want to delete # {0}?', $answer->id)]) ?> </div>
+            <?php endforeach; ?>
+            </ol>
         </div>
     </div>
 

@@ -1,3 +1,7 @@
+h1,h2{
+    font-family: 'MuseoSans_xFat';
+}
+
 .home-list li{
     float: left;
 }
@@ -25,5 +29,16 @@
 }
 
 .answers-ol li{
-    list-style-type: upper-roman;
+    list-style-type: inherit;
+}
+
+/*----------------------------UsersID CTP--------------------------------------*/
+.user-list-of-classes{
+   margin-bottom: 1rem;
+}
+.delete-answer{
+    list-style: none;
+}
+.question-answer{
+    list-style: none;
 }
