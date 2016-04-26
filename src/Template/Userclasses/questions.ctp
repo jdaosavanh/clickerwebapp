@@ -13,8 +13,9 @@
 <!--            --><?php //endif; ?><!--</div>-->
         <div class="questions-add-answer small-2 columns"><input type="text" placeholder="Add Answer to question" maxlength="255" id="addAnswer<?php echo $question->id ?>"></div>
         <div class="questions-add-answer small-2 columns"><a class="button anthracite-gradient" onclick="addAnswer(<?php echo $question->id ?> )">Add Answer </a></div>
-        <div class="delete-question small-3 columns"><?= $this->Form->postLink(__('Delete'), ['controller'=>'questions','action' => 'delete', $question->id,$class_id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?></div>
-       <div class="row">
+        <div class="delete-question small-1 columns"><?= $this->Form->postLink(__('Delete'), ['controller'=>'questions','action' => 'delete', $question->id,$class_id], ['confirm' => __('Are you sure you want to delete # {0}?', $question->id)]) ?></div>
+        <div class="view-answer small-2 columns">  <?php echo $this->Html->link('Student Answers', array('controller' => 'answeredquestions', 'action'=> 'answers', $question->id)) ?></div>
+        <div class="row">
         <div class="answers-con small-12 columns">
 
             <ol class="answers-ol" type="A">
