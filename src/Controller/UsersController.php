@@ -167,9 +167,8 @@ class UsersController extends AppController
 //        debug($userclasses);
 
         //Get by user id
-        $userclass = $userclasses->get($id, [
-            'contain' => ['Questions']
-        ]);
+
+//        $userclass = $userclasses->get($id, ['contain' => ['Questions']]);
 
 //        debug($userclass);
         $userclasses = $userclasses->find()->where(['user_id' => $id]);
