@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 
 /**
@@ -133,4 +134,17 @@ class AnsweredquestionsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
+    public function answers($id = null)
+    {
+
+
+        $answers = $this->Answeredquestions->find()->where(['question_id' =>$id]);
+
+        $this->set('answers', $answers);
+        $this->set('_serialize', ['answers']);
+
+
+    }
+
 }

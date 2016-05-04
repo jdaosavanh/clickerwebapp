@@ -2,7 +2,6 @@
 <?php $i = 0 ?>
 <?php if($questions): ?>
 <div class="row center">
-    <h1>Derpa:</h1>
    <div class="large-12 columns">
        <div class="large-5 columns">
            <input type="text" placeholder="Please enter your Student ID" name="studentID" maxlength="255" id="studentid">
